@@ -2,9 +2,9 @@
 
 ## This is an application implementing web chat.
 
-- [ ] Users must be able to create an account providing a valid email address.
-- [ ] Once logged in users must be able to send and receive messages.
-- [ ] It has only one channel/room and all the users subscribed will have access to the only available channel
+- [x] Users must be able to create an account providing a valid email address.
+- [x] Once logged in users must be able to send and receive messages.
+- [x] It has only one channel/room and all the users subscribed will have access to the only available channel
 
 The system sends to all the users a weekly emails:
  - [ ] how many messages were sent and received in the last week
