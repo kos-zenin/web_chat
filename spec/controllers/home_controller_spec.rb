@@ -9,7 +9,7 @@ describe HomeController, type: :controller do
         get :index
 
         expect(response).to have_http_status(:redirect)
-        expect(response.redirect_url).to eq(["http://test.host", new_session_path].join(""))
+        expect(response.redirect_url).to eq(["http://test.host", new_sessions_path].join(""))
       end
     end
 
