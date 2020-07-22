@@ -1,1 +1,1 @@
-import "auth/base"
+import "auth/styles/base"

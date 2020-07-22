@@ -17,14 +17,30 @@ consumer.subscriptions.create({ channel: "ChatChannel" }, {
     const html = this.buildHtml(data)
     const element = document.querySelector(".chat-container")
     element.insertAdjacentHTML("beforeend", html)
+
+    this.scrollChatDown();
+    this.setTimerForNewMessage();
   },
 
   buildHtml(data) {
     return `
-      <div class="chat-message">
+      <div class="chat-message new-chat-message">
         <div class="chat-message__header">${data["created_at"]} | ${data["user_email"]}</div>
         <div class="chat-message__body">${data["content"]}</div>
       </div>
     `
+  },
+
+  scrollChatDown() {
+    const chatContainer = document.querySelector(".chat-container");
+    chatContainer.scrollTop = chatContainer.scrollHeight;
+  },
+
+  setTimerForNewMessage() {
+    setTimeout(() => {
+      const elements = document.querySelectorAll(".chat-message.new-chat-message");
+
+      elements.forEach((element) => { element.classList.remove("new-chat-message") })
+    }, 1000)
   }
 });

@@ -1,0 +1,20 @@
+.chat-container {
+  max-height: 500px;
+  overflow-y: scroll;
+  border: 1px solid #333333;
+  padding: 10px;
+
+  .new-chat-message {
+    background-color: #e0f7f9;
+  }
+}
+
+.chat-new-message-form {
+  .content-input {
+    width: 88%;
+  }
+
+  .submit-button {
+    width: 10%;
+  }
+}
