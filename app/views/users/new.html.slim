@@ -1,7 +1,8 @@
 - if @user.errors.any?
   ul
     - @user.errors.full_messages.each do |error|
-      li = error
+      li.error = error
+  br
 
 = form_for @user, url: users_path, method: :post do |form|
   = form.email_field :email, placeholder: "Email"
@@ -10,7 +11,8 @@
   br
   = form.password_field :password_confirmation, placeholder: "Password"
   br
-  = form.submit "Sign Up"
+  br
+  = form.submit "Sign Up", class: "submit-button"
 
 br
 

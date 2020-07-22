@@ -1,0 +1,18 @@
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 100px;
+  width: 200px;
+  min-height: 100px;
+  border: 1px solid #333333;
+  padding: 20px;
+  text-align: center;
+
+  .submit-button {
+    width: 100px;
+  }
+
+  .error {
+    color: red;
+  }
+}

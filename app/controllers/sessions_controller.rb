@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class SessionsController < ApplicationController
+  layout "auth"
   before_action :authorize_user!, only: %[destroy]
 
   def new

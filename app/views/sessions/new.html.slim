@@ -1,5 +1,5 @@
 - if @error.present?
-  = @error
+  .error = @error
   br
 
 = form_for @user, url: sessions_path, method: :post do |form|
@@ -7,7 +7,8 @@
   br
   = form.password_field :password, placeholder: "Password"
   br
-  = form.submit "Log In"
+  br
+  = form.submit "Log In", class: "submit-button"
 
 br
 
