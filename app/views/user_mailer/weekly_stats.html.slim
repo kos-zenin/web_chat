@@ -1,0 +1,10 @@
+p
+  = @stats[:number_of_messages_during_last_week]
+  |&nbsp;messages have been exchanged in the last week.
+
+- if @stats[:last_message_sent_at]
+  p
+    = @stats[:number_of_messages_since_your_last_message]
+    |&nbsp;messages since your last message at
+    |&nbsp;
+    = @stats[:last_message_sent_at].to_s(:long)
