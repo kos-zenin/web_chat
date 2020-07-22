@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    User.find(session.fetch(:user_id)) if session.key?(:user_id)
+    @_current_user ||= User.find(session.fetch(:user_id)) if session.key?(:user_id)
   end
 
   def logged_in?
