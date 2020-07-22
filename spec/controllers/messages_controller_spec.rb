@@ -4,24 +4,27 @@ require "rails_helper"
 
 describe MessagesController, type: :controller do
   describe "#create" do
-    let(:chat) { build_stubbed(:chat) }
-    let(:user) { build_stubbed(:user) }
+    let(:chat) { create(:chat) }
+    let(:user) { create(:user) }
     let(:content) { "content" }
+    let(:serialized_message) do
+      {
+        created_at: kind_of(String),
+        user_email: user.email,
+        content: content
+      }
+    end
 
     before do
       session[:user_id] = user.id
-      expect(User).to receive(:find).with(user.id).and_return(user)
-
-      expect(Chat).to receive(:instance).and_return(chat)
     end
 
     it "creates new message" do
-      expect(chat.messages).to receive(:create).with(user: user, content: content)
+      expect(::ChatChannel).to receive(:broadcast_to).with("chat", serialized_message)
 
-      post :create, params: { message: { content: content } }
+      post :create, params: { message: { content: content } }, xhr: true
 
-      expect(response).to have_http_status(:redirect)
-      expect(response.redirect_url).to eq("http://test.host/")
+      expect(response).to have_http_status(:ok)
     end
   end
 end

@@ -15,6 +15,7 @@ br
       .chat-message__body
         = message.content
 
-= form_for Message.new, url: messages_path, method: :post do |form|
-  = form.text_field :content, placeholder: "Enter your message"
-  = form.submit "Send"
+.chat-new-message-form
+  = form_for Message.new, url: messages_path, method: :post, remote: true do |form|
+    = form.text_field :content, placeholder: "Enter your message"
+    = form.submit "Send"

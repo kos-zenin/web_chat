@@ -6,14 +6,26 @@ class MessagesController < ApplicationController
   def create
     chat = Chat.instance
 
-    chat.messages.create(user: current_user, content: permitted_params[:content])
+    message = chat.messages.new(user: current_user, content: permitted_params[:content])
 
-    redirect_to root_path
+    broadcast_notifications(message) if message.save
   end
 
   private
 
   def permitted_params
     params.require(:message).permit(:content)
+  end
+
+  def broadcast_notifications(message)
+    ::ChatChannel.broadcast_to("chat", serialize_message(message))
+  end
+
+  def serialize_message(message)
+    {
+      created_at: message.created_at.to_s(:short),
+      user_email: message.user.email,
+      content: message.content
+    }
   end
 end
