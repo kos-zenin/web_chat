@@ -7,8 +7,8 @@
 - [x] It has only one channel/room and all the users subscribed will have access to the only available channel
 
 The system sends to all the users a weekly emails:
- - [ ] how many messages were sent and received in the last week
- - [ ] the total number of messages received since the user has sent his last message
+- [x] how many messages were sent and received in the last week
+- [x] the total number of messages received since the user has sent his last message
 
 # Setup
 
@@ -20,10 +20,20 @@ The system sends to all the users a weekly emails:
 6. `bundle exec rails db:create RAILS_ENV=development`
 7. `rails server`
 
+# Run
+
+You need to run 3 processes
+1. `rails server`
+2. `./bin/webpack-dev-server`
+3. `bundle exec sidekiq`
+
 # Dependencies
 
 - postgresql
 - redis
+
+## Development dependencies
+- mailcatcher
 
 # Tests
 
