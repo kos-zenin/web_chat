@@ -1,0 +1,17 @@
+- if @user.errors.any?
+  ul
+    - @user.errors.full_messages.each do |error|
+      li = error
+
+= form_for @user, url: users_path, method: :post do |form|
+  = form.email_field :email, placeholder: "Email"
+  br
+  = form.password_field :password, placeholder: "Password"
+  br
+  = form.password_field :password_confirmation, placeholder: "Password"
+  br
+  = form.submit "Sign Up"
+
+br
+
+= link_to "Log in", new_sessions_path
