@@ -23,7 +23,6 @@ describe SessionsController, type: :controller do
     let(:password) { "password" }
 
     context "when passed params are valid" do
-
       before do
         expect(User).to receive(:find_by).with(email: user.email).and_return(user)
         expect(user).to receive(:authenticate).with(password).and_return(user)
