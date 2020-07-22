@@ -2,7 +2,7 @@
 
 class SessionsController < ApplicationController
   layout "auth"
-  before_action :authorize_user!, only: %[destroy]
+  before_action :authorize_user!, only: %(destroy)
 
   def new
     @user = User.new
@@ -11,7 +11,7 @@ class SessionsController < ApplicationController
   def create
     user = User.find_by(email: permitted_params[:email])
 
-    if user && user.authenticate(permitted_params[:password])
+    if user&.authenticate(permitted_params[:password])
       session[:user_id] = user.id
 
       redirect_to root_path
