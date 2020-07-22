@@ -7,20 +7,13 @@ describe MessagesController, type: :controller do
     let(:chat) { create(:chat) }
     let(:user) { create(:user) }
     let(:content) { "content" }
-    let(:serialized_message) do
-      {
-        created_at: kind_of(String),
-        user_email: user.email,
-        content: content
-      }
-    end
 
     before do
       session[:user_id] = user.id
     end
 
     it "creates new message" do
-      expect(::ChatChannel).to receive(:broadcast_to).with("chat", serialized_message)
+      expect(::NewMessageJob).to receive(:perform_later).with(kind_of(Integer))
 
       post :create, params: { message: { content: content } }, xhr: true
 

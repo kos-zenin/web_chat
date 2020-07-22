@@ -18,14 +18,6 @@ class MessagesController < ApplicationController
   end
 
   def broadcast_notifications(message)
-    ::ChatChannel.broadcast_to("chat", serialize_message(message))
-  end
-
-  def serialize_message(message)
-    {
-      created_at: message.created_at.to_s(:short),
-      user_email: message.user.email,
-      content: message.content
-    }
+    ::NewMessageJob.perform_later(message.id)
   end
 end
