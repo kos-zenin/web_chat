@@ -3,5 +3,7 @@
 class HomeController < ApplicationController
   before_action :authorize_user!
 
-  def index; end
+  def index
+    @chat = Chat.instance
+  end
 end

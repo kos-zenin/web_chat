@@ -15,16 +15,19 @@ describe HomeController, type: :controller do
 
     context "when user is authorized" do
       let(:user) { build_stubbed(:user) }
+      let(:chat) { build_stubbed(:chat) }
 
       before do
         session[:user_id] = user.id
 
         expect(User).to receive(:find).with(user.id).and_return(user)
+        expect(Chat).to receive(:instance).and_return(chat)
       end
 
       it "successfully renders the page" do
         get :index
 
+        expect(assigns(:chat)).to eq(chat)
         expect(response).to have_http_status(:ok)
       end
     end

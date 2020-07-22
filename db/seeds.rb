@@ -1,3 +1,4 @@
 # frozen_string_literal: true
 
-user = User.create(email: "test@test.com", password: "123", password_confirmation: "123")
+User.create(email: "test@test.com", password: "123", password_confirmation: "123")
+Chat.create
