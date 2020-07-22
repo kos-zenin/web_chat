@@ -16,18 +16,23 @@ describe HomeController, type: :controller do
     context "when user is authorized" do
       let(:user) { build_stubbed(:user) }
       let(:chat) { build_stubbed(:chat) }
+      let(:messages) { [build_stubbed(:message)] }
+      let(:messages_scope) { class_double(::Message) }
 
       before do
         session[:user_id] = user.id
 
         expect(User).to receive(:find).with(user.id).and_return(user)
         expect(Chat).to receive(:instance).and_return(chat)
+        expect(chat.messages).to receive(:preload).with(:user).and_return(messages_scope)
+        expect(messages_scope).to receive(:order).with(id: :asc).and_return(messages)
       end
 
       it "successfully renders the page" do
         get :index
 
         expect(assigns(:chat)).to eq(chat)
+        expect(assigns(:messages)).to eq(messages)
         expect(response).to have_http_status(:ok)
       end
     end
