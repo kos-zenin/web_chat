@@ -1,24 +1,31 @@
-# README
+# Web Chat
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## This is an application implementing web chat.
 
-Things you may want to cover:
+- [ ] Users must be able to create an account providing a valid email address.
+- [ ] Once logged in users must be able to send and receive messages.
+- [ ] It has only one channel/room and all the users subscribed will have access to the only available channel
 
-* Ruby version
+The system sends to all the users a weekly emails:
+ - [ ] how many messages were sent and received in the last week
+ - [ ] the total number of messages received since the user has sent his last message
 
-* System dependencies
+# Setup
 
-* Configuration
+1. Install ruby 2.7.1
+2. `gem install bundler`
+3. `bundle install`
+4. `cp .env .env.development`
+5. Add necessary variables to `.env.development` file
+6. `bundle exec rails db:create RAILS_ENV=development`
+7. `rails server`
 
-* Database creation
+# Dependencies
 
-* Database initialization
+- postgresql
+- redis
 
-* How to run the test suite
+# Tests
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+1. `bundle exec rspec`
+2. `bundle exec rubocop`
