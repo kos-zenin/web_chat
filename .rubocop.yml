@@ -1,0 +1,33 @@
+require: rubocop-rails
+
+AllCops:
+  UseCache: true
+  DisabledByDefault: false
+  TargetRubyVersion: 2.7.1
+  Exclude:
+    - "bin/*"
+    - "db/schema.rb"
+    - "db/migrate/*"
+    - "node_modules/**/*"
+
+Layout/LineLength:
+  Enabled: true
+  Max: 120
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/Documentation:
+  Enabled: false
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
+
+Metrics/BlockLength:
+  ExcludedMethods: ["describe", "context"]
