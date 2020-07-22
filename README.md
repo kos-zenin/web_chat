@@ -27,5 +27,12 @@ The system sends to all the users a weekly emails:
 
 # Tests
 
+## Setup
+
+1. `cp .env .env.test`
+2. Add necessary variables to `.env.test` file
+
+## Run
+
 1. `bundle exec rspec`
 2. `bundle exec rubocop`
