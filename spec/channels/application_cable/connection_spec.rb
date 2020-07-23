@@ -8,7 +8,7 @@ describe ::ApplicationCable::Connection, type: :channel do
     let(:user) { build_stubbed(:user) }
 
     it "successfully connects" do
-      expect(User).to receive(:find_by).with(id: user.id).and_return(user)
+      expect(User).to receive(:find).with(user.id).and_return(user)
 
       connect "/cable", session: { user_id: user.id }
       expect(connection.current_user.id).to eq(user.id)

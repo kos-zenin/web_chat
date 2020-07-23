@@ -18,7 +18,7 @@ describe HomeController, type: :controller do
       let(:chat) { build_stubbed(:chat) }
       let(:messages) { [build_stubbed(:message)] }
       let(:messages_scope) { class_double(::Message) }
-      let(:current_chat) { isntance_double(::CurrentChat, load: chat) }
+      let(:current_chat) { instance_double(::CurrentChat, load: chat) }
 
       before do
         session[:user_id] = user.id

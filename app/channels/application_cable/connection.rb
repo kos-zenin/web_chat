@@ -11,9 +11,13 @@ module ApplicationCable
     private
 
     def find_verified_user
-      verified_user = User.find_by(id: @request.session[:user_id])
+      return ::User.find(session.fetch(:user_id)) if session.key?(:user_id)
 
-      verified_user || reject_unauthorized_connection
+      reject_unauthorized_connection
+    end
+
+    def session
+      @request.session
     end
   end
 end

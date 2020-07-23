@@ -4,9 +4,7 @@ class MessagesController < ApplicationController
   before_action :authorize_user!
 
   def create
-    chat = current_chat
-
-    message = chat.messages.new(user: current_user, content: permitted_params[:content])
+    message = current_chat.messages.new(user: current_user, content: permitted_params[:content])
 
     broadcast_notifications(message) if message.save
   end
