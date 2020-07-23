@@ -20,30 +20,24 @@ class UserWeeklyStatsCalculator
   end
 
   def number_of_messages_during_last_week
-    chat.messages
-        .where(
-          "created_at >= :start_date AND created_at <= :end_date", {
-            start_date: 1.week.ago,
-            end_date: Time.current
-          }
-        )
-        .count
+    chat.messages.in_period(from: 1.week.ago, to: Time.current).count
   end
 
   def number_of_messages_since_your_last_message
     return if last_message_created_at.blank?
 
-    chat.messages
-        .where(
-          "created_at >= :start_date AND created_at <= :end_date", {
-            start_date: last_message_created_at,
-            end_date: Time.current
-          }
-        )
-        .count
+    chat.messages.in_period(from: last_message_created_at, to: Time.current).count
   end
 
   def last_message_created_at
-    @last_message_created_at ||= @chat.messages.where(user_id: @user.id).order(id: :desc).limit(1).last&.created_at
+    @last_message_created_at ||= begin
+      @chat.messages
+           .select("user_id, created_at")
+           .where(user_id: @user.id)
+           .order(id: :desc)
+           .limit(1)
+           .last
+        &.created_at
+    end
   end
 end
