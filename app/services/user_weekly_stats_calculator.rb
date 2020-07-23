@@ -29,9 +29,9 @@ class UserWeeklyStatsCalculator
   def last_message_created_at
     @last_message_created_at ||= begin
       @chat.messages
-           .select("user_id, created_at")
+           .select(:user_id, :created_at)
            .where(user_id: @user.id)
-           .order(id: :desc)
+           .order(created_at: :desc)
            .limit(1)
            .last
         &.created_at

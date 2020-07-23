@@ -5,6 +5,6 @@ class HomeController < ApplicationController
 
   def index
     @chat = current_chat
-    @messages = @chat.messages.preload(:user).order(id: :asc)
+    @messages = @chat.messages.preload(:user).order(created_at: :asc)
   end
 end

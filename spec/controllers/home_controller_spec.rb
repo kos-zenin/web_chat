@@ -26,7 +26,7 @@ describe HomeController, type: :controller do
         expect(User).to receive(:find).with(user.id).and_return(user)
         expect(::CurrentChat).to receive(:new).and_return(current_chat)
         expect(chat.messages).to receive(:preload).with(:user).and_return(messages_scope)
-        expect(messages_scope).to receive(:order).with(id: :asc).and_return(messages)
+        expect(messages_scope).to receive(:order).with(created_at: :asc).and_return(messages)
       end
 
       it "successfully renders the page" do
