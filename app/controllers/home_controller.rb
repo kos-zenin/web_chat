@@ -4,7 +4,7 @@ class HomeController < ApplicationController
   before_action :authorize_user!
 
   def index
-    @chat = Chat.instance
+    @chat = current_chat
     @messages = @chat.messages.preload(:user).order(id: :asc)
   end
 end

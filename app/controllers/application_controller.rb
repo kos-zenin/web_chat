@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
     @_current_user ||= User.find(session.fetch(:user_id)) if session.key?(:user_id)
   end
 
+  def current_chat
+    @current_chat ||= CurrentChat.new.load
+  end
+
   def logged_in?
     current_user.present?
   end

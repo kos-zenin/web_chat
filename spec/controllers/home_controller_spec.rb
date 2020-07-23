@@ -18,12 +18,13 @@ describe HomeController, type: :controller do
       let(:chat) { build_stubbed(:chat) }
       let(:messages) { [build_stubbed(:message)] }
       let(:messages_scope) { class_double(::Message) }
+      let(:current_chat) { isntance_double(::CurrentChat, load: chat) }
 
       before do
         session[:user_id] = user.id
 
         expect(User).to receive(:find).with(user.id).and_return(user)
-        expect(Chat).to receive(:instance).and_return(chat)
+        expect(::CurrentChat).to receive(:new).and_return(current_chat)
         expect(chat.messages).to receive(:preload).with(:user).and_return(messages_scope)
         expect(messages_scope).to receive(:order).with(id: :asc).and_return(messages)
       end

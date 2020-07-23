@@ -16,7 +16,7 @@ class UserWeeklyStatsCalculator
   private
 
   def chat
-    @chat ||= Chat.instance
+    @chat ||= CurrentChat.new.load
   end
 
   def number_of_messages_during_last_week

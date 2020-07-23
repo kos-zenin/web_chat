@@ -4,7 +4,7 @@ class MessagesController < ApplicationController
   before_action :authorize_user!
 
   def create
-    chat = Chat.instance
+    chat = current_chat
 
     message = chat.messages.new(user: current_user, content: permitted_params[:content])
 
