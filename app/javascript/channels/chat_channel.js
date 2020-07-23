@@ -1,4 +1,5 @@
 import consumer from "./consumer"
+import { scrollChatDown } from "./../application/chat";
 
 consumer.subscriptions.create({ channel: "ChatChannel" }, {
   connected() {
@@ -18,7 +19,7 @@ consumer.subscriptions.create({ channel: "ChatChannel" }, {
     const element = document.querySelector(".chat-container")
     element.insertAdjacentHTML("beforeend", html)
 
-    this.scrollChatDown();
+    scrollChatDown();
     this.setTimerForNewMessage();
   },
 
@@ -29,11 +30,6 @@ consumer.subscriptions.create({ channel: "ChatChannel" }, {
         <div class="chat-message__body">${data["content"]}</div>
       </div>
     `
-  },
-
-  scrollChatDown() {
-    const chatContainer = document.querySelector(".chat-container");
-    chatContainer.scrollTop = chatContainer.scrollHeight;
   },
 
   setTimerForNewMessage() {

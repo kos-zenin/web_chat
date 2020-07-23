@@ -6,3 +6,5 @@ const scrollChatDown = () => {
 window.onload = () => {
   scrollChatDown();
 }
+
+export { scrollChatDown };
