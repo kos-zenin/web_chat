@@ -18,7 +18,7 @@ gem "webpacker", "~> 4.0"
 
 gem "slim-rails", "~> 3.2"
 
-gem "sidekiq", "~> 6.1", ">= 6.1.1"
+gem "sidekiq", "~> 6.2"
 gem "sidekiq-cron", "~> 1.2"
 
 gem "bootsnap", ">= 1.4.2", require: false
